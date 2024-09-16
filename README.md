@@ -213,6 +213,25 @@ sed "s|<Base64_encoded_CSR>|$CSR_CONTENT|" csr_template.yaml > wordpress-dev_csr
 kubectl create -f wordpress-dev_csr.yaml
 ```
 
+```
+kubectl get csr
+kubectl certificate approve wordpress-dev.csr
+kubectl get csr
+kubectl get csr wordpress-dev.csr -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-dev.crt
+```
+
+```
+# Set Cluster Configuration:
+kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs=true --kubeconfig=wordpress-dev.kubeconfig
+```
+
+```
+kubectl config set-credentials wordpress-dev --client-certificate=wordpress-dev.crt --client-key=wordpress-dev.key --embed-certs=true --kubeconfig=wordpress-dev.kubeconfig
+# Set Developer Context: 
+kubectl config set-context wordpress-dev-context --cluster=kubernetes --namespace=wordpress --user=wordpress-dev --kubeconfig=wordpress-dev.kubeconfig
+# Use Developer Context:
+kubectl config use-context wordpress-dev-context --kubeconfig=wordpress-dev.kubeconfig
+
 ### Create wordpress-pf user to access wordpress via port forwarding
 ```
 mkdir ~/k8s-users/wordpress-pf 
