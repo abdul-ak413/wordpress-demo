@@ -104,7 +104,7 @@ sudo systemctl enable docker
 
 __Add the Ubuntu 'user' to the docker group:__
 ```
-sudo usermod -aG docker \$USER
+sudo usermod -aG docker $USER
 ```
 
 __Log out and log back in so that the group membership is re-evaluated. Run the docker command below with sudo to verify docker is up and running__
@@ -216,4 +216,9 @@ kubectl get csr
 kubectl certificate approve wordpress-dev.csr
 kubectl get csr
 kubectl get csr wordpress-dev.csr -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-dev.crt
+```
+
+```
+# Set Cluster Configuration:
+kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt —-embed-certs=true --kubeconfig=/home/$USER/k8s-users/wordpress-dev/wordpress-dev.kubeconfig
 ```
