@@ -259,9 +259,10 @@ kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --cert
 
 ```
 # Set Credentials for Developer:
-kubectl config set-credentials wordpress-pf --client-certificate=wordpress-pf.crt --client-key=wordpress-pf.key --embed-certs=true --kubeconfig=developer.kubeconfig
+kubectl config set-credentials wordpress-pf --client-certificate=wordpress-pf.crt --client-key=wordpress-pf.key --embed-certs=true --kubeconfig=wordpress-pf.kubeconfig
 # Set Developer Context: 
-kubectl config set-context developer-context --cluster=kubernetes --namespace=wordpress --user=wordpress-pf --kubeconfig=developer.kubeconfig
+kubectl config set-context wordpress-pf-context --cluster=kubernetes --namespace=wordpress --user=wordpress-pf --kubeconfig=wordpress-pf.kubeconfig
 # Use Developer Context:
-kubectl config use-context developer-context --kubeconfig=developer.kubeconfig
+kubectl config use-context wordpress-pf-context --kubeconfig=wordpress-pf.kubeconfig
 ```
+##Helm Charts - Deploy RBAC for wordpress-developer and wordpress-pf
