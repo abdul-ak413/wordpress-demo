@@ -4,7 +4,7 @@
 
 ## Installation instructions
 
-__Relevant Documentation__
+__Documentation for reference__
 - Installing docker - https://docs.docker.com/engine/install/ubuntu/
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
