@@ -16,6 +16,7 @@ __Create three servers with the following settings:__
 
 
 __Set appropriate hostname for each node__
+
 E.g. k8s-control, k8s-worker1 and k8s-worker2
 
 
