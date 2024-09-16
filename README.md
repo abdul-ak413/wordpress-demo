@@ -5,7 +5,7 @@
 ## Installation instructions
 
 __Documentation for reference__
-- Installing docker - https://docs.docker.com/engine/install/ubuntu/
+- Installing Docker: https://docs.docker.com/engine/install/ubuntu/
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
 
@@ -172,3 +172,7 @@ sudo kubeadm join ...
 __On the control plane node, verify all nodes in the cluster are ready. Note that it may take a few moments for all of the nodes to enter the READY state:__
 
 kubectl get nodes
+##
+
+## Creating users in the Kubernetes cluster and granting access
+
