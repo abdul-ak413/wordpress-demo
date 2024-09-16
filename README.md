@@ -258,7 +258,6 @@ kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --cert
 ```
 
 ```
-# Set Credentials for Developer:
 kubectl config set-credentials wordpress-pf --client-certificate=wordpress-pf.crt --client-key=wordpress-pf.key --embed-certs=true --kubeconfig=wordpress-pf.kubeconfig
 # Set Developer Context: 
 kubectl config set-context wordpress-pf-context --cluster=kubernetes --namespace=wordpress --user=wordpress-pf --kubeconfig=wordpress-pf.kubeconfig
