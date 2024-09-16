@@ -203,10 +203,17 @@ spec:
 EOF
 ```
 
-
-
+'''
 CSR_CONTENT=$(cat wordpress-dev.csr | base64 | tr -d '\n')
 
 sed "s|<Base64_encoded_CSR>|$CSR_CONTENT|" csr_template.yaml > wordpress-dev_csr.yaml
 
+kubectl create -f wordpress-dev_csr.yaml
+'''
 
+'''
+kubectl get csr
+kubectl certificate approve wordpress-dev_csr.yaml
+kubectl get csr wordpress-dev_csr.yaml -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-dev.crt
+kubectl get csr
+'''
