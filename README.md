@@ -144,9 +144,11 @@ __On the control plane node only, initialize the cluster and set up kubectl acce
 
 sudo kubeadm init --pod-network-cidr 10.0.0.0/16 --kubernetes-version 1.30.0
 
-mkdir -p \$HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf \$HOME/.kube/config
-sudo chown \$(id -u):\$(id -g) \$HOME/.kube/config
+mkdir -p $HOME/.kube
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u):\$(id -g) $HOME/.kube/config
 
 
 __Verify the cluster is working:__
