@@ -231,6 +231,7 @@ kubectl config set-credentials wordpress-dev --client-certificate=wordpress-dev.
 kubectl config set-context wordpress-dev-context --cluster=kubernetes --namespace=wordpress --user=wordpress-dev --kubeconfig=wordpress-dev.kubeconfig
 # Use Developer Context:
 kubectl config use-context wordpress-dev-context --kubeconfig=wordpress-dev.kubeconfig
+'''
 
 ### Create wordpress-pf user to access wordpress via port forwarding
 ```
