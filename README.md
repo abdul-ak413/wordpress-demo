@@ -220,5 +220,14 @@ kubectl get csr wordpress-dev.csr -o jsonpath='{.status.certificate}' | base64 -
 
 ```
 # Set Cluster Configuration:
-kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt —-embed-certs=true --kubeconfig=/home/$USER/k8s-users/wordpress-dev/wordpress-dev.kubeconfig
+kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs=true --kubeconfig=wordpress-dev.kubeconfig
+```
+
+```
+# Set Credentials for Developer:
+kubectl config set-credentials wordpress-dev --client-certificate=wordpress-dev.crt --client-key=wordpress-dev.key --embed-certs=true --kubeconfig=developer.kubeconfig
+# Set Developer Context: 
+kubectl config set-context developer-context --cluster=kubernetes --namespace=wordpress --user=wordpress-dev --kubeconfig=developer.kubeconfig
+# Use Developer Context:
+kubectl config use-context developer-context --kubeconfig=developer.kubeconfig
 ```
