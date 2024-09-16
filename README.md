@@ -180,6 +180,8 @@ kubectl get nodes
 ##
 
 ## Creating users in the Kubernetes cluster and granting access
+
+### Create wordpress-dev user to deploy wordpress
 ```
 mkdir ~/k8s-users/wordpress-dev -p
 
@@ -211,23 +213,55 @@ sed "s|<Base64_encoded_CSR>|$CSR_CONTENT|" csr_template.yaml > wordpress-dev_csr
 kubectl create -f wordpress-dev_csr.yaml
 ```
 
+### Create wordpress-pf user to access wordpress via port forwarding
+```
+mkdir ~/k8s-users/wordpress-pf 
+
+cd ~/k8s-users/wordpress-pf
+
+openssl genrsa -out wordpress-pf.key 2048
+
+openssl req -new -key wordpress-pf.key -subj "/CN=wordpress-pf" -out wordpress-pf.csr
+```
+```
+cat <<EOF > csr_template.yaml
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: wordpress-pf.csr
+spec:
+  request: <Base64_encoded_CSR>
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
+EOF
+```
+
+```
+CSR_CONTENT=$(cat wordpress-pf.csr | base64 | tr -d '\n')
+
+sed "s|<Base64_encoded_CSR>|$CSR_CONTENT|" csr_template.yaml > wordpress-pf_csr.yaml
+
+kubectl create -f wordpress-pf_csr.yaml
+```
+
 ```
 kubectl get csr
-kubectl certificate approve wordpress-dev.csr
+kubectl certificate approve wordpress-pf.csr
 kubectl get csr
-kubectl get csr wordpress-dev.csr -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-dev.crt
+kubectl get csr wordpress-pf.csr -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-pf.crt
 ```
 
 ```
 # Set Cluster Configuration:
-kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs=true --kubeconfig=wordpress-dev.kubeconfig
+kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs=true --kubeconfig=wordpress-pf.kubeconfig
 ```
 
 ```
 # Set Credentials for Developer:
-kubectl config set-credentials wordpress-dev --client-certificate=wordpress-dev.crt --client-key=wordpress-dev.key --embed-certs=true --kubeconfig=developer.kubeconfig
+kubectl config set-credentials wordpress-pf --client-certificate=wordpress-pf.crt --client-key=wordpress-pf.key --embed-certs=true --kubeconfig=developer.kubeconfig
 # Set Developer Context: 
-kubectl config set-context developer-context --cluster=kubernetes --namespace=wordpress --user=wordpress-dev --kubeconfig=developer.kubeconfig
+kubectl config set-context developer-context --cluster=kubernetes --namespace=wordpress --user=wordpress-pf --kubeconfig=developer.kubeconfig
 # Use Developer Context:
 kubectl config use-context developer-context --kubeconfig=developer.kubeconfig
 ```
