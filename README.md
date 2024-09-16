@@ -213,7 +213,7 @@ kubectl create -f wordpress-dev_csr.yaml
 
 ```
 kubectl get csr
-kubectl certificate approve wordpress-dev_csr.yaml
-kubectl get csr wordpress-dev_csr.yaml -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-dev.crt
+kubectl certificate approve wordpress-dev.csr
 kubectl get csr
+kubectl get csr wordpress-dev.csr -o jsonpath='{.status.certificate}' | base64 --decode > wordpress-dev.crt
 ```
