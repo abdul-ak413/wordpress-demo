@@ -33,7 +33,7 @@ __On all nodes, set up the hosts file to enable all the nodes to reach each othe
 
 sudo vi /etc/hosts
 
-__On all nodes, add the following at the end of the file. You will need to supply the actual private IP address for each node:__
+__On all nodes, add the following at the end of the file. The private IP address for each node is required:__
 
 <control plane node private IP> k8s-control
 <worker node 1 private IP> k8s-worker1
@@ -41,7 +41,7 @@ __On all nodes, add the following at the end of the file. You will need to suppl
 
 __Log out of all three servers and log back in to see these changes take effect__
 
-__On all nodes, set up Docker Engine and containerd. You will need to load some kernel modules and modify some system settings as part of this
+__On all nodes, set up Docker Engine and containerd. Load some kernel modules and modify some system settings as part of this
 process:__
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
@@ -74,6 +74,7 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyring
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
 __Add the repository to Apt sources:__
+
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
@@ -87,15 +88,15 @@ sudo apt-get install -y docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING 
 sudo systemctl enable docker
 
 
-__Add your 'user' to the docker group:__
+__Add the Ubuntu 'user' to the docker group:__
 
 sudo usermod -aG docker $USER
 
-__Log out and log back in so that your group membership is re-evaluated and that docker is up and running__
+__Log out and log back in so that the group membership is re-evaluated. Run the docker command below with sudo to verify docker is up and running__
 
 docker run hello-world
 
-__Make sure that 'disabled_plugins' is commented out in your config.toml file:__
+__Make sure that 'disabled_plugins' is commented out in the config.toml file:__
 
 sudo sed -i 's/disabled_plugins/#disabled_plugins/' /etc/containerd/config.toml
 
@@ -138,7 +139,7 @@ __Install the Calico network add-on:__
 
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 
-__Get the join command (this command is also printed during kubeadm init; feel free to simply copy it from there):__
+__Get the join command (this command is also printed during kubeadm init):__
 
 kubeadm token create --print-join-command
 
@@ -146,6 +147,6 @@ __Copy the join command from the control plane node. Run it on each worker node 
 
 sudo kubeadm join ...
 
-__On the control plane node, verify all nodes in your cluster are ready. Note that it may take a few moments for all of the nodes to enter the READY state:__
+__On the control plane node, verify all nodes in the cluster are ready. Note that it may take a few moments for all of the nodes to enter the READY state:__
 
 kubectl get nodes
