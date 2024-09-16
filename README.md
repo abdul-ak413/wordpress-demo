@@ -227,15 +227,16 @@ kubectl config set-cluster kubernetes --server=https://192.168.1.110:6443 --cert
 
 ```
 kubectl config set-credentials wordpress-dev --client-certificate=wordpress-dev.crt --client-key=wordpress-dev.key --embed-certs=true --kubeconfig=wordpress-dev.kubeconfig
-# Set Developer Context: 
+# Set wordpress-dev-context Context: 
 kubectl config set-context wordpress-dev-context --cluster=kubernetes --namespace=wordpress --user=wordpress-dev --kubeconfig=wordpress-dev.kubeconfig
-# Use Developer Context:
+# Use wordpress-dev-context Context:
 kubectl config use-context wordpress-dev-context --kubeconfig=wordpress-dev.kubeconfig
-'''
+```
 
 ### Create wordpress-pf user to access wordpress via port forwarding
+
 ```
-mkdir ~/k8s-users/wordpress-pf 
+mkdir ~/k8s-users/wordpress-pf -p
 
 cd ~/k8s-users/wordpress-pf
 
@@ -284,4 +285,3 @@ kubectl config set-context wordpress-pf-context --cluster=kubernetes --namespace
 # Use Developer Context:
 kubectl config use-context wordpress-pf-context --kubeconfig=wordpress-pf.kubeconfig
 ```
-##Helm Charts - Deploy RBAC for wordpress-developer and wordpress-pf
