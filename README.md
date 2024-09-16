@@ -178,3 +178,13 @@ kubectl get nodes
 
 ## Creating users in the Kubernetes cluster and granting access
 
+mkdir ~/k8s-users/wordpress-dev
+
+cd ~/k8s-users/wordpress-dev
+
+openssl genrsa -out wordpress-dev.key 2048
+
+openssl req -new -key wordpress-dev.key -subj "/CN=wordpress-dev" -out wordpress-dev.csr
+
+
+
