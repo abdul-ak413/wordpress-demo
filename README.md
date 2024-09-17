@@ -188,7 +188,7 @@ __On the control plane, install helm v3 from Binary releases__
 
 ```
 wget https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
-tar -zxvf helm-v3.2.4-linux-amd64.tar.gz
+tar -zxvf helm-v3.15.4-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 helm version
 ```
