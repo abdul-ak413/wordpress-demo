@@ -299,3 +299,20 @@ kubectl config set-context wordpress-pf-context --cluster=kubernetes --namespace
 # Use Developer Context:
 kubectl config use-context wordpress-pf-context --kubeconfig=wordpress-pf.kubeconfig
 ```
+
+### Grant access to the users wordpress-dev and wordpress-pf
+```
+helm install rbac-1 <...>/helm-charts/rbac_wordpress_users/
+```
+
+### Deploy Wordpress as the wordpress-dev user
+```
+helm install app-1 wordpress_app/ --kubeconfig=/home/dev-user/k8s-users/wordpress-dev/wordpress-dev.kubeconfig
+```
+
+### Run the wordpress app deployed via port forwarding as the wordpress-pf user
+```
+kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kubeconfig=/home/dev-user/k8s-users/wordpress-pf/wordpress-pf.kubeconfig
+
+#Open the wordpress application on a webbrowser using the url http://<control-plane ip address>:8888
+```
