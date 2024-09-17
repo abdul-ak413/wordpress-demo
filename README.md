@@ -9,6 +9,7 @@ __Documentation for reference__
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
 - Installing Helm v3: https://helm.sh/docs/intro/install/
+- Kubernetes Dashboard: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
 
 __Create three servers with the following settings:__
@@ -315,4 +316,11 @@ helm install app-1 wordpress_app/ --kubeconfig=/home/dev-user/k8s-users/wordpres
 kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kubeconfig=/home/dev-user/k8s-users/wordpress-pf/wordpress-pf.kubeconfig
 
 #Open the wordpress application on a webbrowser using the url http://<control-plane ip address>:8888
+```
+
+## Deploy read only dashboard user
+```
+cd ~
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm pull kubernetes-dashboard/kubernetes-dashboard --untar
 ```
