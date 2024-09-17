@@ -179,13 +179,16 @@ __On the control plane node, verify all nodes in the cluster are ready. Note tha
 kubectl get nodes
 ```
 
-__On the control plane, install helm v3 using a Helm package for Apt__
+__On the control plane, install helm v3 from Binary releases__
+1. Download your desired version
+2. Unpack it (tar -zxvf helm-v3.2.4-linux-amd64.tar.gz)
+3. Find the helm binary in the unpacked directory, and move it to its desired destination (mv linux-amd64/helm /usr/local/bin/helm)
+
 ```
-curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
-sudo apt-get install apt-transport-https --yes
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-sudo apt-get update
-sudo apt-get install helm
+wget https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
+tar -zxvf helm-v3.2.4-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/helm
+helm version
 ```
 
 ##
