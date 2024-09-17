@@ -9,7 +9,8 @@ __Documentation for reference__
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
 - Installing Helm v3: https://helm.sh/docs/intro/install/
-- Kubernetes Dashboard: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+- Deploy and Access Kubernetes Dashboard: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+- Create Service Account for Dashboard: https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
 
 
 __Create three servers with the following settings:__
@@ -192,7 +193,13 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 helm version
 ```
 
-##
+## Deploy the Kubernetes Dashboard using Helm
+```
+# Add kubernetes-dashboard repository
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+# Deploy a Helm Release named "kubernetes-dashboard" using the kubernetes-dashboard chart
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+```
 
 ## Creating users in the Kubernetes cluster and granting access
 
