@@ -317,10 +317,3 @@ kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kube
 
 #Open the wordpress application on a webbrowser using the url http://<control-plane ip address>:8888
 ```
-
-## Deploy read only dashboard user
-```
-cd ~
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-helm pull kubernetes-dashboard/kubernetes-dashboard --untar
-```
