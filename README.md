@@ -8,6 +8,7 @@ __Documentation for reference__
 - Installing Docker: https://docs.docker.com/engine/install/ubuntu/
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+- Installing Helm v3: https://helm.sh/docs/intro/install/
 
 
 __Create three servers with the following settings:__
@@ -177,6 +178,16 @@ __On the control plane node, verify all nodes in the cluster are ready. Note tha
 ```
 kubectl get nodes
 ```
+
+__On the control plane, install helm v3 using a Helm package for Apt__
+```
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+```
+
 ##
 
 ## Creating users in the Kubernetes cluster and granting access
