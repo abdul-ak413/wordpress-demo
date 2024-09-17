@@ -183,11 +183,11 @@ kubectl get nodes
 
 __On the control plane, install helm v3 from Binary releases__
 1. Download your desired version
-2. Unpack it (tar -zxvf helm-v3.2.4-linux-amd64.tar.gz)
+2. Unpack it (tar -zxvf helm-v3.15.4-linux-amd64.tar.gz)
 3. Find the helm binary in the unpacked directory, and move it to its desired destination (mv linux-amd64/helm /usr/local/bin/helm)
 
 ```
-wget https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
+wget https://get.helm.sh/helm-v3.15.4-linux-amd64.tar.gz
 tar -zxvf helm-v3.15.4-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 helm version
