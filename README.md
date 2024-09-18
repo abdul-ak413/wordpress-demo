@@ -11,6 +11,7 @@ __Documentation for reference__
 - Installing Helm v3: https://helm.sh/docs/intro/install/
 - Deploy and Access Kubernetes Dashboard: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 - Create Service Account for Dashboard: https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+- Create Dummy posts in Wordpress: https://developer.wordpress.org/cli/commands/post/generate/
 
 
 __Create three servers with the following settings:__
