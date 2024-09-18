@@ -334,7 +334,7 @@ helm install app-1 wordpress_app/ --kubeconfig=/home/dev-user/k8s-users/wordpres
 
 ### Run the wordpress app deployed via port forwarding as the wordpress-pf user
 ```
-kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kubeconfig=/home/dev-user/k8s-users/wordpress-pf/wordpress-pf.kubeconfig
+kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kubeconfig=/home/dev-user/k8s-users/wordpress-pf/wordpress-pf.kubeconfig &
 
 #Open the wordpress application on a webbrowser using the url http://<control-plane ip address>:8888
 ```
