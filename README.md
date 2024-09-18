@@ -212,7 +212,7 @@ kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-da
 cd ~
 git clone https://github.com/abdul-ak413/wordpress-demo.git
 cd ~/wordpress-demo/helm-charts
-helm install readonly-1 <....>/read-only-dashboard/
+helm install readonly-1 read-only-dashboard/
 
 #Retrive bearer token to sign into Kubernetes Dashboard
 kubectl get secret secret-readonly -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
@@ -328,7 +328,8 @@ kubectl config use-context wordpress-pf-context --kubeconfig=wordpress-pf.kubeco
 
 ### Grant access to the users wordpress-dev and wordpress-pf
 ```
-helm install rbac-1 <...>/helm-charts/rbac_wordpress_users/
+cd ~/wordpress-demo/helm-charts
+helm install rbac-1 rbac_wordpress_users/
 ```
 
 ### Deploy Wordpress as the wordpress-dev user
