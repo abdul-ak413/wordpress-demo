@@ -193,7 +193,9 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 helm version
 ```
 
-## Deploy the Kubernetes Dashboard using Helm
+## Kubernetes Dashboard
+
+### Deploy the Kubernetes Dashboard using Helm
 ```
 # Add kubernetes-dashboard repository
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
@@ -204,7 +206,7 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dash
 kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443 &
 ```
 
-## Create Read-Only Service Account for the Kubernetes Dashboard and retrieve the token to for login
+### Create Read-Only Service Account for the Kubernetes Dashboard and retrieve the token to for login
 ```
 <PLACEHOLDER>
 ```
