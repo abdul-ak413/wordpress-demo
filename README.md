@@ -201,8 +201,14 @@ helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
 
 #To access the dashboard, https://<contol plane private ip>:8443/
-kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443
+kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443 &
 ```
+
+## Create Read-Only Service Account for the Kubernetes Dashboard and retrieve the token to for login
+```
+<PLACEHOLDER>
+```
+
 
 ## Creating users in the Kubernetes cluster and granting access
 
