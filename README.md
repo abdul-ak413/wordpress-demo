@@ -327,6 +327,7 @@ kubectl config use-context wordpress-pf-context --kubeconfig=wordpress-pf.kubeco
 ```
 
 ### Grant access to the users wordpress-dev and wordpress-pf
+__The helm charts contain cluster roles, roles and cluster role bindings and role bindings for the users__ 
 ```
 cd ~/wordpress-demo/helm-charts
 helm install rbac-1 rbac_wordpress_users/
@@ -334,6 +335,7 @@ helm install rbac-1 rbac_wordpress_users/
 
 ### Deploy Wordpress as the wordpress-dev user
 ```
+cd ~/wordpress-demo/helm-charts
 helm install app-1 wordpress_app/ --kubeconfig=/home/dev-user/k8s-users/wordpress-dev/wordpress-dev.kubeconfig
 ```
 
