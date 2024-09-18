@@ -208,7 +208,10 @@ kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-da
 
 ### Create Read-Only Service Account for the Kubernetes Dashboard and retrieve the token to for login
 ```
-<PLACEHOLDER>
+helm install readonly-1 <....>/read-only-dashboard/
+
+#Retrive bearer token to sign into Kubernetes Dashboard
+kubectl get secret secret-readonly -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
 ```
 
 
