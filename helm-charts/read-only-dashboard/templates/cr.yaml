@@ -4,7 +4,7 @@ metadata:
   name: cr-readonly
 rules:
 - apiGroups:
-  - ""
+  - "*"
   resources:
   - '*'
   verbs:
