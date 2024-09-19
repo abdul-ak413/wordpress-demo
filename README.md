@@ -5,7 +5,7 @@
 ## Installation instructions
 
 __Documentation for reference__
-- Installing cri-dockerd: https://mirantis.github.io/cri-dockerd/usage/install-manually/
+- Installing cri-dockerd: https://github.com/Mirantis/cri-dockerd/releases
 - Installing Docker: https://docs.docker.com/engine/install/ubuntu/
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
@@ -52,6 +52,8 @@ __On all nodes, add the following at the end of the file. The private IP address
 
 
 __Log out of all three servers and log back in to see these changes take effect__
+
+
 
 __On all nodes, set up Docker Engine and containerd. Load some kernel modules and modify some system settings as part of this
 process:__
@@ -116,15 +118,17 @@ __Log out and log back in so that the group membership is re-evaluated. Run the 
 docker run hello-world
 ```
 
-__Make sure that 'disabled_plugins' is commented out in the config.toml file:__
-```
-sudo sed -i 's/disabled_plugins/#disabled_plugins/' /etc/containerd/config.toml
-```
-
-__Enable and Restart containerd:__
+__Enable containerd:__
 ```
 sudo systemctl enable containerd
-sudo systemctl restart containerd
+```
+
+__On all nodes, setup cri-dockerd__
+```
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.15/cri-dockerd_0.3.15.3-0.debian-bullseye_amd64.deb
+sudo dpkg -i cri-dockerd_0.3.15.3-0.debian-bullseye_amd64.deb
+sudo systemctl enable cri-docker.service
+sudo systemctl enable cri-docker.socket
 ```
 
 __On all nodes, disable swap:__
@@ -148,7 +152,9 @@ sudo systemctl enable kubelet
 
 __On the control plane node only, initialize the cluster and set up kubectl access:__
 ```
-sudo kubeadm init --pod-network-cidr 10.0.0.0/16 --kubernetes-version 1.30.0
+sudo kubeadm config images pull --cri-socket unix://var/run/cri-dockerd.sock --kubernetes-version 1.30.0
+
+sudo kubeadm init --pod-network-cidr 10.0.0.0/16 --kubernetes-version 1.30.0 --cri-socket unix://var/run/cri-dockerd.sock
 
 mkdir -p $HOME/.kube
 
@@ -169,12 +175,12 @@ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/
 
 __Get the join command (this command is also printed during kubeadm init):__
 ```
-kubeadm token create --print-join-command
+kubeadm token create --print-join-command 
 ```
 
 __Copy the join command from the control plane node. Run it on each worker node as root (i.e., with sudo ):__
 ```
-sudo kubeadm join ...
+sudo kubeadm join ... --cri-socket unix://var/run/cri-dockerd.sock
 ```
 
 __On the control plane node, verify all nodes in the cluster are ready. Note that it may take a few moments for all of the nodes to enter the READY state:__
