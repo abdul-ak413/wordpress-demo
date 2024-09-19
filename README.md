@@ -134,6 +134,7 @@ sudo systemctl enable containerd
 
 __On all nodes, setup cri-dockerd__
 ```
+cd ~
 wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.15/cri-dockerd_0.3.15.3-0.debian-bullseye_amd64.deb
 sudo dpkg -i cri-dockerd_0.3.15.3-0.debian-bullseye_amd64.deb
 sudo systemctl enable cri-docker.service
