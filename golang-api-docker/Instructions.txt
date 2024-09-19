@@ -1,0 +1,9 @@
+To build the docker file:
+sudo docker image build -t golangapp:v1 .
+
+To run the docker file:
+sudo docker container run  -e DB_HOST="192.168.224.135" -e DB_PASSWORD="my-secret-password" -e DB_USER="root" -e DB_NAME="wordpress" -e DB_PORT="30009" -p 3000:3000 golangapp:v1
+
+To retrieve data from the api:
+curl <docker engine host ip address or dns>:3000/posts
+curl <docker engine host ip address or dns>:3000/posts/post/{id}
