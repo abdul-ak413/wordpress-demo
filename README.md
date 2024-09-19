@@ -144,7 +144,9 @@ sudo systemctl enable cri-docker.socket
 __On all nodes, disable swap:__
 ```
 sudo swapoff -a
+#Permanently disable swap partition
 sudo nano /etc/fstab
+##/swap.img      none    swap    sw      0       0
 ```
 
 __On all nodes, install kubeadm, kubelet, and kubectl:__
