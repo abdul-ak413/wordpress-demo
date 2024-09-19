@@ -336,7 +336,7 @@ helm install rbac-1 rbac_wordpress_users/
 ### Deploy Wordpress as the wordpress-dev user
 ```
 cd ~/wordpress-demo/helm-charts
-helm install app-1 wordpress_app/ --kubeconfig=/home/dev-user/k8s-users/wordpress-dev/wordpress-dev.kubeconfig
+helm install app-1 wordpress_app/ --kubeconfig=/home/$USER/k8s-users/wordpress-dev/wordpress-dev.kubeconfig
 ```
 
 ### Run the wordpress app deployed via port forwarding as the wordpress-pf user
