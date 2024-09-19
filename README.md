@@ -5,6 +5,7 @@
 ## Installation instructions
 
 __Documentation for reference__
+- Installing cri-dockerd: https://mirantis.github.io/cri-dockerd/usage/install-manually/
 - Installing Docker: https://docs.docker.com/engine/install/ubuntu/
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
