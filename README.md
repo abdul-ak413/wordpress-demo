@@ -118,6 +118,13 @@ __Log out and log back in so that the group membership is re-evaluated. Run the 
 docker run hello-world
 ```
 
+__Build a local docker image gor the golang app on every node__
+'''
+cd ~
+git clone https://github.com/abdul-ak413/wordpress-demo.git
+
+''
+
 __Enable containerd:__
 ```
 sudo systemctl enable containerd
@@ -216,8 +223,6 @@ kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-da
 
 ### Create Read-Only Service Account for the Kubernetes Dashboard and retrieve the token to for login
 ```
-cd ~
-git clone https://github.com/abdul-ak413/wordpress-demo.git
 cd ~/wordpress-demo/helm-charts
 helm install readonly-1 read-only-dashboard/
 
