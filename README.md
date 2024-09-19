@@ -118,12 +118,14 @@ __Log out and log back in so that the group membership is re-evaluated. Run the 
 docker run hello-world
 ```
 
-__Build a local docker image gor the golang app on every node__
-'''
+__Build a local docker image for the golang app on every node__
+```
 cd ~
 git clone https://github.com/abdul-ak413/wordpress-demo.git
-
-''
+cd ~/wordpress-demo/golang-api-docker/
+docker image build -t wp-demo-golangapp:v1 .
+docker image ls
+```
 
 __Enable containerd:__
 ```
