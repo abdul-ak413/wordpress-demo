@@ -410,3 +410,13 @@ kubectl exec -n wordpress wp-golangapp exec -- curl 127.0.0.1:3000/posts
 #Use wordpress post id to only retrieve data for a single wordpress post
 kubectl exec -n wordpress wp-golangapp exec -- curl 127.0.0.1:3000/posts/post/<post id>
 ```
+
+## Demo Infrastructure Shortcommings
+- Overall a very high attack service on a Kubernetes Cluster
+- Secrets are exposed in a base64 format which can easily be decoded
+- Require alot of effort to create a certficate for a user and approve the certficate for the Kubernetes cluster
+- Network policies not created 
+
+## Teleport 
+- Overall reduces the attack service on a Kubernetes Cluster
+- 
