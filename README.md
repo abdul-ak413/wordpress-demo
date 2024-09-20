@@ -1,6 +1,10 @@
 # Wordpress Demo
 
 ## Intro
+- The purpose of the demo is to convey why Teleport is a good solution for securing access to Kubernetes clusters
+- The demo will cover an infrastructure setup without Teleport
+- The shortcommings of the infratsructure
+- How Teleport overcomes the shortcommings
 
 ## Installation instructions
 
