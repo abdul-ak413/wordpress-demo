@@ -21,8 +21,14 @@
     - Calico CNI network plugin
 - The Kubernetes infrastructure deployed on the worker nodes
     - Kubernetes Dashboard with a read only user
-    - WordPress app
-    - Golang app with an API           
+        - Readonly user is a service account, that has a secret of type token and cluster wide read only privileges
+        - The token is pasted into the Kubernetes Dashboard for sign in     
+    - Wordpress app
+    - The Wordpress app will be deployed by a user with a kube-config file that only has access to the wordpress namespace
+    - The Wordpress app will be deployed by a different user with a kube-config file that has port-forwarding access in the wordpress namespace to expose the wordpress Cluster ip service
+    - Golang app with an API
+        - The API will grab data for wordpress posts from the Wordpress MySQL database
+        - The API image will be a locally built docker image, therefore the image pull policiy will be never for the pod running the API            
 
 ## Installation instructions
 
