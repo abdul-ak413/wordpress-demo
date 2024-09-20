@@ -31,6 +31,9 @@
         - The API will grab data for wordpress posts from the Wordpress MySQL database
         - The API image will be a locally built docker image, therefore the image pull policiy will be never for the pod running the API            
 
+### cri-dockerd replaces dockershim
+
+
 ## Installation instructions
 
 __Documentation for reference__
