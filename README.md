@@ -22,6 +22,7 @@
 - The Kubernetes infrastructure deployed on the worker nodes
     - Kubernetes Dashboard with a read only user
         - Readonly user is a service account, that has a secret of type token and cluster wide read only privileges
+        - The Dashboard will be exposed via port forwarding
         - The token is pasted into the Kubernetes Dashboard for sign in     
     - Wordpress app
     - The Wordpress app will be deployed by a user with a kube-config file that only has access to the wordpress namespace
