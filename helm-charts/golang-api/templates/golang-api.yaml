@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: wp-golangapp
+  name: wp-golangapp
+  namespace: wordpress
+spec:
+  containers:
+  - image: wp-demo-golangapp:v1
+    name: wp-golangapp
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 3000
+    env:
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mysql-pass
+          key: password
+    - name: DB_NAME
+      value: wordpress
+    - name: DB_PORT
+      value: "3306"
+    - name: DB_HOST
+      value: wordpress-mysql.wordpress.svc.cluster.local 
+    - name: DB_USER
+      value: root
