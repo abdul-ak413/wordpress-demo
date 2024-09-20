@@ -32,7 +32,7 @@
         - The API image will be a locally built docker image, therefore the image pull policiy will be never for the pod running the API            
 
 ### cri-dockerd replaces dockershim
-
+![image info](pictures/cri-dockerd_diagram.png)
 
 ## Installation instructions
 
