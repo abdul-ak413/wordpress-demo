@@ -412,11 +412,11 @@ kubectl exec -n wordpress wp-golangapp exec -- curl 127.0.0.1:3000/posts/post/<p
 ```
 
 ## Demo Infrastructure Shortcommings
-- Overall a very high attack service on a Kubernetes Cluster
+- Overall a very high attack surface on a Kubernetes Cluster
 - Secrets are exposed in a base64 format which can easily be decoded
 - Require alot of effort to create a certficate for a user and approve the certficate for the Kubernetes cluster
 - Network policies not created 
 
 ## Teleport 
-- Overall reduces the attack service on a Kubernetes Cluster
+- Overall reduces the attack surface on a Kubernetes Cluster
 - 
