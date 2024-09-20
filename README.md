@@ -13,11 +13,22 @@
     - k8s-worker2 
 - Ubuntu 20.04 is the operating system for all virtual machines
 - The following is installed on each machine
+    - cri-dockerd
+    - Docker
+    - kubeadm, kubctl and kubelet
+- The following will be installed only on the master node
+    - Helm v3
+    - Calico CNI network plugin
+- The Kubernetes infrastructure deployed on the worker nodes
+    - Kubernetes Dashboard with a read only user
+    - WordPress app
+    - Golang app with an API           
 
 ## Installation instructions
 
 __Documentation for reference__
 - Installing cri-dockerd: https://github.com/Mirantis/cri-dockerd/releases
+- Dockershim and Cri-dockerd: https://www.mirantis.com/blog/cri-dockerd-faq-blog
 - Installing Docker: https://docs.docker.com/engine/install/ubuntu/
 - Installing kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 - Creating a cluster with kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
