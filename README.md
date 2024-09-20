@@ -34,6 +34,9 @@
 ### cri-dockerd replaces dockershim
 ![cri-dockerd](Pictures/cri-dockerd_diagram.png)
 
+### Network Diagram of Infrastructure
+![cri-dockerd](Pictures/network-diagram.png)
+
 ## Installation instructions
 
 __Documentation for reference__
