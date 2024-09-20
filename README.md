@@ -366,10 +366,11 @@ kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kube
 ## Deploy Golang API (INCOMPLETE)
 ### Golang API connects to MySQL database server
 ```
-#Limitation of code
+#Limitations and errors of code
 #Will throw an error and exit if wordpress.wp_posts table is not created
 #wordpress.wp_posts table is only created after wordpress is installed
-#API only retrieves wordpress posts only once after running an api call. New posts cannot be retrieved
+#API only retrieves wordpress posts at the time of creation. Post added after creation cannot be retrieved
+#Custom wordpress posts are duplicated 
 
 cd ~/wordpress-demo/helm-charts
 helm install golang-api-1 golang-api/
