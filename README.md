@@ -371,7 +371,8 @@ kubectl port-forward --address 0.0.0.0 deployment/app-1-wordpress 8888:80 --kube
 #wordpress.wp_posts table is only created after wordpress is installed
 #API only retrieves wordpress posts only once after running an api call. New posts cannot be retrieved
 
-
+cd ~/wordpress-demo/helm-charts
+helm install golang-api-1 golang-api/
 
 #Retrieve data for wordpress posts including id
 kubectl exec -n wordpress wp-golangapp exec -- curl 127.0.0.1:3000/posts
