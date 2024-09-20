@@ -414,9 +414,15 @@ kubectl exec -n wordpress wp-golangapp exec -- curl 127.0.0.1:3000/posts/post/<p
 ## Demo Infrastructure Shortcommings
 - Overall a very large attack surface on a Kubernetes Cluster
 - Secrets are exposed in a base64 format which can easily be decoded
-- Require alot of effort to create a certficate for a user and approve the certficate for the Kubernetes cluster
-- Network policies not created 
+- Require alot of effort to create a certficate for a user and approve the certficate for the Kubernetes cluster and distribute the certifcates
+    - Lack of flexibilty: E.g. Users may require access to prod for an hour  
+- Auditing will need to be setup
 
 ## Teleport 
+- Single pane of glass view for the Kubernetes Cluster
+- Very Flexible with Built in RBAC system
+    - E.g. Temporary access to prod can easily be provided 
 - Overall reduces the attack surface on a Kubernetes Cluster
-- 
+- Users can be created in Teleport with certain priveleges, without the need for administrator to manage certificates
+    - Teleport's Built-in RBAC system     
+- Auditing in place
