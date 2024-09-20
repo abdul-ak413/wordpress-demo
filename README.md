@@ -3,8 +3,16 @@
 ## Intro
 - The purpose of the demo is to convey why Teleport is a good solution for securing access to Kubernetes clusters
 - The demo will cover an infrastructure setup without Teleport
-- The shortcommings of the infratsructure
+- The shortcommings of the infrastructure
 - How Teleport overcomes the shortcommings
+
+## Outline of infrastructure setup
+- There are 3 virtual machines that consist of one master and two worker nodes
+    - k8s-control
+    - k8s-worker1
+    - k8s-worker2 
+- Ubuntu 20.04 is the operating system for all virtual machines
+- The following is installed on each machine
 
 ## Installation instructions
 
